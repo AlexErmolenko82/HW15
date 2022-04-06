@@ -23,6 +23,7 @@ const fillAlbumsList = async (url) => {
           button.className = "delete_button";
           button.innerHTML = `X`;
           });
+          showCountAlbums(".album_title");
       }
   } catch (responseError) {
     if (responseError.status === 404) {
@@ -42,5 +43,11 @@ container.addEventListener("click", (event) => {
     if (isRemoveButton) {
       const closestAlbum = event.target.closest(".album_title");
       closestAlbum.remove();
+      showCountAlbums(".album_title");
       }
 });
+
+const showCountAlbums = (className) => {
+  let count = document.querySelectorAll(className).length;
+  document.querySelector("#title").innerHTML = `ALBUMS (${count}):`;
+}
